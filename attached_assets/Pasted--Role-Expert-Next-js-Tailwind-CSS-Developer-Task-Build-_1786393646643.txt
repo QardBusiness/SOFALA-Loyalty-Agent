@@ -1,0 +1,28 @@
+**Role:** Expert Next.js & Tailwind CSS Developer
+**Task:** Build a modern, minimalist, responsive Point of Sale (POS) interface for a fast-casual operation as part of our core MVP.
+
+**Technical Stack:** Next.js (App Router), React, Tailwind CSS, lucide-react (for icons).
+
+**Requirements:**
+1. **Layout:** A clean, light-themed two-column layout optimized for fast-casual operations.
+   - Left side (70%): Product Grid.
+   - Right side (30%): Order Summary (Cart) side panel with a sticky layout.
+2. **Product Grid:** Create a grid with large, high-contrast cards/buttons for fast tapping. Use subtle borders and vibrant accent colors on hover/active states. Include these 4 simulated products:
+   - "Crispy Pork Burger" ($ 25.00)
+   - "Cerveja Krug Zero" ($ 10.00)
+   - "Cassava & Beef Portion" ($ 35.00)
+   - "X1PRO Combo" ($ 45.00)
+3. **Cart State:** Use React `useState` to manage added items, their quantities, and calculate the total order value dynamically. Display the list of items cleanly in the side panel with options to increase/decrease quantity.
+4. **Checkout Action:** A prominent, large, highly visible "Checkout" (Finalizar Pedido) button fixed at the bottom of the cart panel.
+5. **API Integration:** When Checkout is clicked, execute an asynchronous `fetch` POST request to `http://localhost:3000/api/cashback` with the following JSON payload:
+   `{ "valorDaCompra": [TOTAL_VALUE_AS_NUMBER], "frequenciaDoCliente": "ALTA" }`
+6. **AI Agent Modal (Katlyn):** Upon receiving a successful response from the backend, display a premium-looking, centralized Modal overlay with a glassmorphism effect.
+   - The modal should explicitly announce that the AI Agent "Katlyn" has analyzed the purchase to reward the client.
+   - Prominently and visually highlight the `cashbackRecomendado` value returned from the API payload as an immediate bonus.
+   - Include a clear "Close / Next Order" button to reset the POS state and close the modal.
+
+**Important Guardrails & Instructions:**
+- **Crucial:** Add `"use client"` at the very top of the component file to prevent Next.js hydration errors and enable React hooks.
+- Handle loading states during the API request (e.g., disable the checkout button and show a spinner icon).
+- Wrap the `fetch` call in a try/catch block. If the local backend (port 3000) is unreachable, show a standard UI error toast instead of crashing the application.
+- Prioritize reusable, modular code structure within a single file for this iteration.
